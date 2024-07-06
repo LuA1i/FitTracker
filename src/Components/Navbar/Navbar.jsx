@@ -29,6 +29,11 @@ const Navbar = () => {
               BMI
             </Link>
           </li>
+          <li>
+            <Link className="nav-links" to={'/CalorieGoal'}>
+              CalorieGoal
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
