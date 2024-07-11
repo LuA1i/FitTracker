@@ -6,15 +6,41 @@ const CalorieGoal = () => {
   const [age, useAge] = useState('')
   const [gender, useGender] = useState('')
   const [activityLevel, setAcitivityLevel] = useState('level_1')
-  const [cal, setCal] = useState(0)
+  const [cal, setCal] = useState({ maintain: 0, gain: 0, lose: 0 })
 
   const handleCalc = () => {
     let bmr = 0
     if (gender === 'male') {
-      bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5
     } else {
-      bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161
     }
+
+    let acitivtyRate = 1.2
+
+    switch (activityLevel) {
+      case 'level_2':
+        acitivtyRate = 1.375
+        break
+      case 'level_3':
+        acitivtyRate = 1.55
+        break
+      case 'level_4':
+        acitivtyRate = 1.725
+        break
+      case 'level_5':
+        acitivtyRate = 1.9
+      default:
+        acitivtyRate = 1.2
+    }
+
+    const maintanenceCalories = bmr * acitivtyRate
+
+    setCal({
+      maintain: Math.round(maintanenceCalories),
+      gain: Math.round(maintanenceCalories + 500),
+      lose: Math.round(maintanenceCalories - 500),
+    })
   }
   return (
     <div className="container">
