@@ -1,0 +1,31 @@
+.userinput input {
+  margin-right: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid grey;
+  height: 30px;
+  margin-top: 30px;
+}
+
+.container {
+  max-width: 900px;
+}
+
+.food-item {
+  width: 300px;
+}
+
+.calories {
+  width: 50px;
+}
+
+.add-food {
+  width: 50px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  outline: none;
+}
