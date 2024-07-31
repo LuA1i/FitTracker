@@ -1,42 +1,62 @@
 import React, { useState } from 'react'
 import '../Components/CalorieTracker/calorieTracker.css'
+
 const CalorieTracker = () => {
   const [food, setFood] = useState('')
-  const [cal, setCalc] = useState('')
+  const [cal, setCal] = useState('')
   const [foodList, setFoodList] = useState([])
+  const [edit, setEdit] = useState(null)
 
   const handleAddFood = () => {
     if (food && cal) {
-      setFoodList([...foodList, { food, cal: Number(cal) }])
+      if (edit !== null) {
+        const updateFoodList = foodList.map((item, index) =>
+          index === edit ? { food, cal: Number(cal) } : item
+        )
+        setFoodList(updateFoodList)
+        setEdit(null)
+      } else {
+        setFoodList([...foodList, { food, cal: Number(cal) }])
+      }
       setFood('')
-      setCalc('')
+      setCal('')
     }
   }
+
+  const handleEdit = (index) => {
+    setFood(foodList[index].food)
+    setCal(foodList[index].cal)
+    setEdit(index)
+  }
+
+  const handleDelete = (index) =>
+    setFoodList(foodList.filter((_, i) => i !== index))
+
   return (
     <div>
       <div className="container">
-        <h1>CalorieGoal: </h1>
+        <h1>Calorie Goal: </h1>
         <h2>
           Current Calorie Intake:{' '}
           {foodList.reduce((total, item) => total + item.cal, 0)} cal{' '}
         </h2>
         <div className="userinput">
-          <label htmlFor=""> Add Food: </label>
+          <label>Add Food:</label>
           <input
             className="food-item"
             type="text"
             value={food}
             onChange={(e) => setFood(e.target.value)}
           />
-          <label htmlFor="">Cal: </label>
+          <label>Cal:</label>
           <input
             className="calories"
             type="number"
             value={cal}
-            onChange={(e) => setCalc(e.target.value)}
+            onChange={(e) => setCal(e.target.value)}
           />
           <button onClick={handleAddFood} className="add-food">
-            Add
+            {edit !== null ? 'Update' : 'Add'}
           </button>
         </div>
         <div className="food-list">
@@ -45,8 +65,15 @@ const CalorieTracker = () => {
             {foodList.map((item, index) => (
               <li key={index}>
                 {item.food}: {item.cal} cal
-                <button className="delete-food">Delete</button>
-                <button className="edit-food">Edit</button>
+                <button
+                  className="delete-food"
+                  onClick={() => handleDelete(index)}
+                >
+                  Delete
+                </button>
+                <button className="edit-food" onClick={() => handleEdit(index)}>
+                  Edit
+                </button>
               </li>
             ))}
           </ul>
