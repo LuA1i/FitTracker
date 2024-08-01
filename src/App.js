@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar/Navbar'
 import Home from './Pages/Home'
 import BmiCalculator from './Pages/bmiCalculator'
 import CalorieTracker from './Pages/CalorieTracker'
+import CalCalc from './Components/CalorieCalcualtor/calCalc'
 import CalorieGoal from './Pages/CalorieGoal'
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/bmiCalculator" element={<BmiCalculator />} />
           <Route path="/CalorieTracker" element={<CalorieTracker />} />
-          <Route path="/CalorieGoal" element={<CalorieGoal />} />
+          <Route path="/CalorieGoal" element={<CalCalc />} />
         </Routes>
       </Router>
     </div>

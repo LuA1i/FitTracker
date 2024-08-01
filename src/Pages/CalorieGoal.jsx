@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 import '../Components/CaloriGoalCSS/CalorieGoalCss.css'
 
-const CalorieGoal = () => {
+const CalorieGoal = ({ calories, setCalories }) => {
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
   const [age, setAge] = useState(0)
   const [gender, setGender] = useState('male')
   const [activityLevel, setActivityLevel] = useState('level_1')
-  const [calories, setCalories] = useState({ maintain: 0, gain: 0, lose: 0 })
 
   const handleCalc = () => {
     let bmr = 0

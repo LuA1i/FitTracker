@@ -36,6 +36,12 @@ const CalorieTracker = () => {
     <div>
       <div className="container">
         <h1>Calorie Goal: </h1>
+        <select name="" id="">
+          <option value="">Maintain</option>
+          <option value="">Gain</option>
+          <option value="">Lose</option>
+        </select>
+
         <h2>
           Current Calorie Intake:{' '}
           {foodList.reduce((total, item) => total + item.cal, 0)} cal{' '}
