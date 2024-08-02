@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import '../Components/CaloriGoalCSS/CalorieGoalCss.css'
-import { useNavigate } from 'react-router-dom'
 
-const CalorieGoal = ({ calories, setCalories }) => {
+const CalorieGoal = () => {
   const [height, setHeight] = useState(0)
   const [weight, setWeight] = useState(0)
   const [age, setAge] = useState(0)
   const [gender, setGender] = useState('male')
   const [activityLevel, setActivityLevel] = useState('level_1')
-  const navigate = useNavigate()
+  const [calories, setCalories] = useState({ maintain: 0, gain: 0, lose: 0 })
 
   const handleCalc = () => {
     let bmr = 0
@@ -37,12 +36,11 @@ const CalorieGoal = ({ calories, setCalories }) => {
     }
 
     const maintenanceCalories = bmr * activityMultiplier
-    const calculatedCalories = {
+    setCalories({
       maintain: Math.round(maintenanceCalories),
       gain: Math.round(maintenanceCalories + 500),
       lose: Math.round(maintenanceCalories - 500),
-    }
-    navigate('/CalorieTracker', { state: calculatedCalories })
+    })
   }
   return (
     <div className="container">

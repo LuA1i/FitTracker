@@ -1,21 +1,11 @@
 import React, { useState } from 'react'
 import '../Components/CalorieTracker/calorieTracker.css'
-import { useLocation } from 'react-router-dom'
 
 const CalorieTracker = () => {
-  const location = useLocation()
-  const { maintain, gain, lose } = location.state || {
-    maintain: 0,
-    gain: 0,
-    lose: 0,
-  }
-
   const [food, setFood] = useState('')
   const [cal, setCal] = useState('')
   const [foodList, setFoodList] = useState([])
   const [edit, setEdit] = useState(null)
-
-  const [goal, setGoal] = useState('maintain')
 
   const handleAddFood = () => {
     if (food && cal) {
@@ -41,16 +31,15 @@ const CalorieTracker = () => {
 
   const handleDelete = (index) =>
     setFoodList(foodList.filter((_, i) => i !== index))
-  const currentGoalCalories =
-    goal === 'maintain' ? maintain : goal === 'gain' ? gain : lose
+
   return (
     <div>
       <div className="container">
-        <h1>Calorie Goal: {currentGoalCalories} </h1>
-        <select name="" value={goal} onChange={(e) => setGoal(e.target.value)}>
-          <option value="maintain">Maintain</option>
-          <option value="gain">Gain</option>
-          <option value="lose">Lose</option>
+        <h1>Calorie Goal: </h1>
+        <select name="" id="">
+          <option value="">Maintain</option>
+          <option value="">Gain</option>
+          <option value="">Lose</option>
         </select>
 
         <h2>
